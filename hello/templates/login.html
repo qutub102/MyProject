@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Login
+{% endblock title %}
+
+{% block nav %}<li><a href="/loginUser">Help</a></li>{% endblock nav %}
+
+{% block description %}
+<div id="box">
+<form class="text-center" method="post">
+    {% csrf_token %}
+    <h1>Login Here.</h1>
+    <div class="input text-center">
+        <input type="text" name='email' class="text-center" name="uname" id="username" placeholder="Enter Username">
+        <input type="password" name='pass' class="text-center" name="password" id="pass" placeholder="Enter Password">
+    </div>
+    <div class="btn">
+        <button type="submit">Login</button>
+    </div>
+</form>
+<div class="btn">
+    <button type="submit" onclick="signup()">SIGNUP</button>
+</div>
+</div>
+{% endblock description%}
