@@ -10,8 +10,8 @@
     align-items: center;
     /* border: 2px solid red; */
     background-color: rgb(53, 51, 51);
-    position: sticky;
-    top: 0px;
+    /* position: sticky;
+    top: 0px; */
 }
 .header .logo img{
     height: 100px;
@@ -79,12 +79,17 @@
 #box h1{
     text-shadow: 2px 2px red;
 }
-.description p{
+.description .para{
     font-size: 2rem;
-    margin-top: 20px;
+}
+.description p{
+    /* font-size: 2rem; */
+    /* margin-top: 20px; */
+    margin-top: 0;
 }
 .description .btn{
-    margin-top: 23px;
+    /* margin-top: 23px; */
+    margin-top: 0;
 }
 .description .btn button{
     margin-right: 15px;
@@ -155,10 +160,43 @@
 #width-setter{
     width: 50%;
 }
-.container{
-    /* border: 2px solid black; */
-    padding: 10px;
+.carousel{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.carousel-inner{
+    margin-left: 100px;
+}
+.card img{
+    height: 160px;
+}
+.card{
+    display: inline-block;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px 10px red;
-    background-color: white;
+    border: 1px solid black;
+}
+.card .card-body{
+    padding: 12px;  
+}
+.card .card-text{
+    padding: 0px;
+}
+body .carousel-control-prev,body .carousel-control-next{
+    position: static;
+    width: 50px;
+    height: 50px;
+    top: 370px;
+    /* left: 100px; */ 
+    border-radius: 50px;
+}
+body .carousel-control-prev-icon,body .carousel-control-next-icon{
+    background-color: blue;
+    height: 80%;
+    width: 80%;
+    border: 2px solid black;
+    border-radius: 50px;
+}
+.carousel-indicators .active{
+    background-color: red;
 }
