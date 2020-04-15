@@ -3,12 +3,12 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render,redirect
 from django.shortcuts import HttpResponse
-from home.models import Contact,Signup
+from home.models import Contact,Signup,Service
 from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
-
+from math import ceil
 # Create your views here.
 def index(request):
     if request.user.is_anonymous:
@@ -47,9 +47,21 @@ def about(request):
     return render(request,'about.html')
 def service(request):
     if request.user.is_anonymous:
-        messages.success(request,'Please Signup first')
+        messages.success(request,'Please Signup first to Enjoy Our Service')
         return redirect('login')
-    return render(request,'service.html')
+    allProds=[]
+    catProds=Service.objects.values('category','id')
+    print(catProds)
+    cats={item['category'] for item in catProds }
+    print(cats)
+    for  cat  in cats:
+        prod=Service.objects.filter(category=cat)
+        n=len(prod)
+        print(prod)
+        nSlides=n//4+ceil((n/4)-(n//4))
+        allProds.append([prod,range(1,nSlides),nSlides])
+    param={'allProds':allProds}
+    return render(request,'service.html',param)
 def signup(request):
     if request.method=="POST":
         username=request.POST.get('username')
@@ -57,6 +69,9 @@ def signup(request):
         lname=request.POST.get('last')
         email=request.POST.get('email')
         password=request.POST.get('pass')
+        if username=='' or fname=='' or lname=='' or email=='' or password=='':
+            messages.success(request,'Please Enter Something')
+            return redirect(request,'signup.html')
         user=User.objects.create_superuser(username,email,password)
         user.first_name=fname
         user.last_name=lname

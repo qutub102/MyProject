@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
-
+from django.conf.urls.static import static
+from django.conf import settings
 admin.site.site_header="Qutub Food"
 admin.site.site_title="Qutub Food"
 admin.site.index_title="Welcome To Qutub Food"
@@ -23,4 +24,4 @@ admin.site.index_title="Welcome To Qutub Food"
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url('',include('home.urls'))
-]
+] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
