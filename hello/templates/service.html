@@ -80,7 +80,13 @@ else{
 $('.cart').click(function(){
   var idstr=this.id
   if(cart[idstr]!=undefined){
-    cart[idstr]=cart[idstr]+1;
+     {% comment %} Added alert when the product is already added to the cart {% endcomment %}
+    if(cart[idstr] >= 1){
+      alert('Product Is already Added');
+    }
+    else{
+      cart[idstr]=cart[idstr]+1;
+    }
   }
   else{
     cart[idstr]=1;
